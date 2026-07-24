@@ -1,0 +1,140 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Design tokens
+   Dark, cinematic, red-accented. Defined once here and consumed everywhere as
+   Tailwind utilities (bg-surface, text-muted, border-line, text-brand, …).
+--------------------------------------------------------------------------- */
+@theme {
+  --color-ink: #08080a;
+  --color-ink-soft: #0d0d10;
+  --color-surface: #111114;
+  --color-surface-2: #17171b;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-line-strong: rgba(255, 255, 255, 0.16);
+
+  --color-brand: #e11d2e;
+  --color-brand-dim: #b01423;
+  --color-brand-soft: rgba(225, 29, 46, 0.12);
+
+  --color-fg: #ffffff;
+  --color-muted: #a1a1aa;
+  --color-dim: #71717a;
+
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --radius-card: 1rem;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Clears the fixed mobile action bar so nothing is hidden behind it. */
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A single, consistent, clearly visible focus ring. */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Respect the reader's motion preference everywhere, unconditionally. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  ::selection {
+    background-color: var(--color-brand);
+    color: #ffffff;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Utilities
+--------------------------------------------------------------------------- */
+@layer utilities {
+  /* Soft red glow used behind the hero and key section headings. */
+  .glow-brand {
+    background-image: radial-gradient(
+      60% 60% at 50% 40%,
+      rgba(225, 29, 46, 0.22) 0%,
+      rgba(225, 29, 46, 0) 70%
+    );
+  }
+
+  .glow-brand-sm {
+    background-image: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(225, 29, 46, 0.16) 0%,
+      rgba(225, 29, 46, 0) 72%
+    );
+  }
+
+  /* Faint diagonal hairline texture, echoing the workshop's red slash motif. */
+  .texture-lines {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.03) 0px,
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 7px
+    );
+  }
+
+  /* Fades the bottom of an image into the page background. */
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
