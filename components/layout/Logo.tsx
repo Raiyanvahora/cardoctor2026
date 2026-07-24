@@ -16,7 +16,7 @@ export function Logo({ className, showTagline = true }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn("group inline-flex items-center gap-3", className)}
+      className={cn("group inline-flex min-h-11 items-center gap-3", className)}
       aria-label={`${business.name} — home`}
     >
       <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-surface transition-colors duration-300 group-hover:border-brand/60">

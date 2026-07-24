@@ -183,6 +183,35 @@
     text-wrap: balance;
   }
 
+  /*
+     Collapsible footer columns.
+
+     Phones get native <details> accordions. From lg up the panel is forced
+     open and the summary stops being interactive, so desktop renders a plain
+     multi-column footer with no disclosure affordance.
+  */
+  .footer-group > summary {
+    list-style: none;
+  }
+  .footer-group > summary::-webkit-details-marker {
+    display: none;
+  }
+  .footer-group[open] > summary svg {
+    transform: rotate(180deg);
+  }
+
+  /*
+     The open state itself is set in FooterGroup.tsx — Chrome suppresses
+     rendering of closed <details> content on an internal slot, so CSS cannot
+     force the panel visible. Here we only stop the summary being interactive
+     at desktop widths, where the group is always open.
+  */
+  @media (min-width: 64rem) {
+    .footer-group > summary {
+      pointer-events: none;
+    }
+  }
+
   /* Horizontal strips that scroll on phones shouldn't show a scrollbar. */
   .scrollbar-none {
     scrollbar-width: none;
