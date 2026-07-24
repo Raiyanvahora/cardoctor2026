@@ -4,7 +4,6 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  NPM_FLAGS = "--legacy-peer-deps=false"
 
 # Official Netlify runtime for Next.js. Keeps next/image optimization,
 # route handlers and the App Router working on Netlify's platform.
