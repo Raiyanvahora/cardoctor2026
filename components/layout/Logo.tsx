@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { business } from "@/lib/business";
 import { cn } from "@/lib/cn";
@@ -6,57 +7,50 @@ interface LogoProps {
   className?: string;
   /** Hides the tagline on tight layouts such as the mobile navbar. */
   showTagline?: boolean;
+  /** Prioritise loading — set for the navbar, which is above the fold. */
+  priority?: boolean;
 }
 
 /**
- * Brand lockup: an original stethoscope-over-car mark drawn as inline SVG,
- * echoing the workshop's own signage motif, plus the wordmark and tagline.
+ * Brand lockup, built from the workshop's own signage artwork.
+ *
+ * The mark and wordmark were cut from the real sign and lifted onto
+ * transparency (see the note in the repo README), so this is the business's
+ * actual identity rather than an approximation of it.
+ *
+ * Both images are decorative here: the surrounding link already carries an
+ * accessible name, so alt text on them would make a screen reader announce the
+ * business twice. The tagline stays as real text.
  */
-export function Logo({ className, showTagline = true }: LogoProps) {
+export function Logo({ className, showTagline = true, priority = false }: LogoProps) {
   return (
     <Link
       href="/"
-      className={cn("group inline-flex min-h-11 items-center gap-3", className)}
+      className={cn("group inline-flex min-h-11 items-center gap-2.5 sm:gap-3", className)}
       aria-label={`${business.name} — home`}
     >
-      <span className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-line bg-surface transition-colors duration-300 group-hover:border-brand/60">
-        <svg
-          aria-hidden
-          viewBox="0 0 32 32"
-          className="h-6 w-6"
-          fill="none"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          {/* Stethoscope tubing */}
-          <path
-            d="M9 4v5a5 5 0 0 0 10 0V4"
-            stroke="var(--color-brand)"
-            strokeWidth="2"
-          />
-          <path
-            d="M14 14v3a6 6 0 0 0 12 0v-2"
-            stroke="var(--color-brand)"
-            strokeWidth="2"
-          />
-          {/* Chest piece, drawn as a car silhouette */}
-          <path
-            d="M4 26v-3l2-4h12l2 4v3"
-            stroke="currentColor"
-            strokeWidth="2"
-            className="text-fg"
-          />
-          <circle cx="8" cy="26" r="2" stroke="currentColor" strokeWidth="2" className="text-fg" />
-          <circle cx="18" cy="26" r="2" stroke="currentColor" strokeWidth="2" className="text-fg" />
-          <circle cx="26" cy="13" r="2.5" stroke="var(--color-brand)" strokeWidth="2" />
-        </svg>
-      </span>
-      <span className="flex flex-col leading-none">
-        <span className="font-display text-base font-bold uppercase tracking-tight text-fg sm:text-lg">
-          Car <span className="text-brand">Doctor</span> India
-        </span>
+      <Image
+        src="/images/logo-mark.png"
+        alt=""
+        width={320}
+        height={305}
+        priority={priority}
+        sizes="44px"
+        className="h-9 w-auto shrink-0 transition-transform duration-300 group-hover:scale-105 sm:h-10"
+      />
+
+      <span className="flex flex-col gap-1">
+        <Image
+          src="/images/logo-wordmark.png"
+          alt=""
+          width={900}
+          height={89}
+          priority={priority}
+          sizes="200px"
+          className="h-[15px] w-auto sm:h-[18px]"
+        />
         {showTagline ? (
-          <span className="mt-1 hidden text-[10px] font-medium uppercase tracking-[0.16em] text-dim sm:block">
+          <span className="hidden text-[9px] font-medium tracking-[0.14em] text-dim uppercase sm:block">
             {business.tagline}
           </span>
         ) : null}

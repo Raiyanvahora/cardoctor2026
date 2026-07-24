@@ -90,6 +90,23 @@ export const reviews: Review[] = [
 The section switches from the placeholder to real review cards automatically.
 No component changes are needed.
 
+### The logo
+
+`public/images/logo-mark.png` and `public/images/logo-wordmark.png` were cut
+from the workshop's own signage artwork (kept locally in `logo/`, git-ignored).
+The flat grey sign background was lifted to transparency with a soft alpha ramp
+and the edge pixels un-composited, so the artwork carries no grey fringe on the
+dark site. `app/icon.png` is the same mark on the brand background, used as the
+favicon.
+
+The signage also carries manufacturer badges and a phone number; both were
+deliberately left out. The number is already a tappable link, and reproducing
+manufacturer logos on a website can read as an authorised-dealer claim. The
+marques are named in text instead — see the note on the About page.
+
+To regenerate these from a new source image, the extraction is a short
+`sharp` script; the approach is described in `components/layout/Logo.tsx`.
+
 ### Replacing photographs
 
 Images live in `public/images/` and are listed in `lib/gallery.ts`.

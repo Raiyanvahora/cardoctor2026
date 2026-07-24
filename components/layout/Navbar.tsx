@@ -71,7 +71,7 @@ export function Navbar() {
         )}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-4 sm:px-6 lg:px-8">
-          <Logo />
+          <Logo priority />
 
           <nav aria-label="Primary" className="hidden lg:block">
             <ul className="flex items-center gap-1">

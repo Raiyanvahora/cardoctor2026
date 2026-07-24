@@ -93,7 +93,7 @@ export function autoRepairSchema() {
       `${business.siteUrl}/images/bay-red-ambient-night.jpg`,
       `${business.siteUrl}/images/reception-interior.jpg`,
     ],
-    logo: `${business.siteUrl}/images/workshop-exterior-night.jpg`,
+    logo: `${business.siteUrl}/images/logo-mark.png`,
     telephone: business.phones.primary,
     email: business.email,
     address: postalAddress,
