@@ -1,13 +1,8 @@
-import { Clock, Gem, ScanSearch, Truck } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { business } from "@/lib/business";
-import { Card } from "@/components/ui/Card";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 
 interface Reason {
-  icon: LucideIcon;
   title: string;
   body: string;
 }
@@ -18,57 +13,66 @@ interface Reason {
  */
 const reasons: Reason[] = [
   {
-    icon: Gem,
-    title: "Luxury Is the Speciality",
+    title: "Luxury is the speciality",
     body: `Since ${business.established} the workshop has focused on luxury and performance vehicles — the marques on the wall are the cars that come through the doors.`,
   },
   {
-    icon: ScanSearch,
-    title: "Diagnose Before Replacing",
+    title: "Diagnose before replacing",
     body: "Fault codes are read, circuits and components are tested, and the cause is confirmed with you before any repair is authorised.",
   },
   {
-    icon: Clock,
-    title: "Open 24 Hours",
+    title: "Open 24 hours",
     body: "The workshop keeps 24-hour availability, so a drop-off does not have to be squeezed into a working day.",
   },
   {
-    icon: Truck,
-    title: "Pickup & Drop",
+    title: "Pickup and drop",
     body: `Your car can be collected and returned instead of you making two trips. ${business.pickupNote}`,
   },
 ];
 
+/**
+ * Presented as a divided band rather than four bordered cards — the page
+ * already carries a service index and a process timeline, and a third grid of
+ * identical boxes is what made the layout read as a template.
+ */
 export function WhyChooseUs() {
   return (
-    <Section width="wide" aria-labelledby="why-heading">
-      <SectionHeading
-        id="why-heading"
-        eyebrow="Why Car Doctor India"
-        title="The Difference Is in the Detail"
-        description="No shortcuts, no guesswork, and no surprises when you collect the car."
-        align="center"
-        className="mb-12 lg:mb-16"
-      />
+    <Section tone="soft" width="wide" aria-labelledby="why-heading">
+      <Reveal>
+        <div className="flex flex-col gap-5 border-b border-line pb-8 lg:flex-row lg:items-end lg:justify-between">
+          <h2
+            id="why-heading"
+            className="max-w-lg text-[1.75rem] leading-[1.08] font-bold text-fg sm:text-4xl"
+          >
+            The Difference Is in the Detail
+          </h2>
+          <p className="max-w-sm text-sm leading-relaxed text-muted">
+            No shortcuts, no guesswork, and no surprises when you collect the
+            car.
+          </p>
+        </div>
+      </Reveal>
 
-      <ul className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {reasons.map((reason, index) => {
-          const Icon = reason.icon;
-          return (
-            <Reveal as="li" key={reason.title} delay={index * 0.08} className="h-full">
-              <Card className="h-full" padding="md">
-                <span className="flex h-12 w-12 items-center justify-center rounded-xl border border-line bg-ink">
-                  <Icon aria-hidden className="h-5.5 w-5.5 text-brand" />
-                </span>
-                <h3 className="mt-6 text-lg font-bold text-fg">{reason.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted">
-                  {reason.body}
-                </p>
-              </Card>
-            </Reveal>
-          );
-        })}
-      </ul>
+      <ol className="grid gap-0 lg:grid-cols-4">
+        {reasons.map((reason, index) => (
+          <Reveal
+            as="li"
+            key={reason.title}
+            delay={index * 0.07}
+            className="border-b border-line py-7 lg:border-b-0 lg:border-r lg:px-7 lg:py-9 lg:first:pl-0 lg:last:border-r-0 lg:last:pr-0"
+          >
+            <span className="font-display block text-3xl leading-none font-extrabold text-line-strong">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <h3 className="font-display mt-4 text-base leading-tight font-bold text-fg uppercase">
+              {reason.title}
+            </h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted">
+              {reason.body}
+            </p>
+          </Reveal>
+        ))}
+      </ol>
     </Section>
   );
 }

@@ -3,7 +3,7 @@ import { business } from "@/lib/business";
 import { breadcrumbSchema, pageMetadata } from "@/lib/seo";
 import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { ServicesSection } from "@/components/home/ServicesSection";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { CtaBand } from "@/components/shared/CtaBand";
 
@@ -26,7 +26,7 @@ export default function ServicesPage() {
         image={{ src: "/images/bay-brand-wall-night.jpg", alt: "" }}
       />
 
-      <ServicesGrid showHeading={false} />
+      <ServicesSection variant="page" />
 
       <ProcessSteps />
 

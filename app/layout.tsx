@@ -75,6 +75,18 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en-IN" className={`${archivo.variable} ${inter.variable}`}>
+      <head>
+        {/*
+          Marks that scripting is available, before first paint. Scroll-reveal
+          start states are gated behind this class, so if this never runs the
+          page simply renders fully visible instead of staying blank.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add('js')`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-ink font-sans text-fg antialiased">
         <a
           href="#main"

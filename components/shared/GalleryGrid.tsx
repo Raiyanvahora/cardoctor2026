@@ -32,10 +32,12 @@ export function GalleryGrid({
     <>
       <ul
         className={cn(
-          "grid gap-4",
+          "grid gap-3 sm:gap-4",
           isTile
-            ? "grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-6"
-            : "sm:grid-cols-2 lg:grid-cols-3",
+            ? "grid-cols-3 sm:grid-cols-4 lg:grid-cols-6"
+            : // Two-up on phones as well: a single column of portrait frames
+              // ran to roughly 2,800px for six photographs.
+              "grid-cols-2 lg:grid-cols-3",
           className,
         )}
       >
@@ -59,7 +61,7 @@ export function GalleryGrid({
                 sizes={
                   isTile
                     ? "(min-width: 1024px) 12vw, (min-width: 640px) 20vw, 30vw"
-                    : "(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw"
+                    : "(min-width: 1024px) 30vw, 46vw"
                 }
                 className={cn(
                   "w-full object-cover object-center transition-transform duration-500 group-hover:scale-105",
@@ -73,8 +75,8 @@ export function GalleryGrid({
               />
 
               {!isTile ? (
-                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 text-left">
-                  <span className="text-sm font-semibold text-fg">
+                <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-3.5 text-left sm:p-5">
+                  <span className="line-clamp-1 text-xs font-semibold text-fg sm:line-clamp-2 sm:text-sm">
                     {image.caption}
                   </span>
                   <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line-strong bg-ink/70 text-fg opacity-0 transition-opacity duration-300 group-hover:opacity-100">

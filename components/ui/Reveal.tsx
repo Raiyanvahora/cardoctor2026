@@ -1,60 +1,77 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import type { ReactNode } from "react";
+import { useEffect, useRef, useState } from "react";
+import { cn } from "@/lib/cn";
 
 interface RevealProps {
-  children: ReactNode;
+  children: React.ReactNode;
   /** Stagger helper — seconds to wait before this element animates. */
   delay?: number;
-  /** Direction the element travels in from. */
   from?: "bottom" | "left" | "right";
   className?: string;
   as?: "div" | "li" | "article" | "section";
 }
 
-const offsets = {
-  bottom: { x: 0, y: 24 },
-  left: { x: -24, y: 0 },
-  right: { x: 24, y: 0 },
-};
-
 /**
- * Subtle scroll-triggered fade and rise.
+ * Scroll-triggered fade and rise.
  *
- * When the reader has asked for reduced motion, the element renders in its
- * final state immediately with no transform and no transition.
+ * Deliberately CSS-driven rather than JS-driven, because the animated state
+ * must never be able to get stuck:
+ *
+ *   - Content is VISIBLE by default. The hidden start state only applies once
+ *     `.js` is on <html>, which an inline script in the layout sets before
+ *     first paint. If scripting fails, everything simply renders.
+ *   - `prefers-reduced-motion` is honoured by a CSS media query, not by a
+ *     client-side branch. An earlier version branched in React after the
+ *     server had already rendered `opacity: 0`, and React never cleared that
+ *     inline style — so readers with Reduce Motion enabled saw a blank page.
+ *
+ * The observer only ever *adds* the shown state, so the failure mode is
+ * "animation doesn't play", never "content never appears".
  */
 export function Reveal({
   children,
   delay = 0,
   from = "bottom",
   className,
-  as = "div",
+  as: Tag = "div",
 }: RevealProps) {
-  const reduceMotion = useReducedMotion();
-  const MotionTag = motion[as];
+  const ref = useRef<HTMLElement>(null);
+  const [shown, setShown] = useState(false);
 
-  if (reduceMotion) {
-    const Tag = as;
-    return <Tag className={className}>{children}</Tag>;
-  }
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || shown) return;
 
-  const offset = offsets[from];
+    // No IntersectionObserver, or already in view on load — show immediately.
+    if (typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShown(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1, rootMargin: "0px 0px -60px 0px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [shown]);
 
   return (
-    <MotionTag
-      className={className}
-      initial={{ opacity: 0, x: offset.x, y: offset.y }}
-      whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, amount: 0.2, margin: "0px 0px -80px 0px" }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.22, 1, 0.36, 1],
-      }}
+    <Tag
+      ref={ref as React.Ref<never>}
+      data-reveal={from}
+      data-shown={shown ? "" : undefined}
+      style={delay ? ({ "--reveal-delay": `${delay}s` } as React.CSSProperties) : undefined}
+      className={cn(className)}
     >
       {children}
-    </MotionTag>
+    </Tag>
   );
 }

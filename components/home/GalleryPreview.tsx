@@ -11,6 +11,7 @@ export function GalleryPreview() {
       <SectionHeading
         id="gallery-heading"
         eyebrow="The Gallery"
+        eyebrowStyle="inline"
         title="Inside the Workshop"
         description="Real photographs of the Car Doctor India workshop in Anand and the cars that pass through it."
         action={
@@ -19,7 +20,7 @@ export function GalleryPreview() {
             <ArrowRight aria-hidden className="h-4 w-4" />
           </Button>
         }
-        className="mb-12 lg:mb-16"
+        className="mb-9 lg:mb-12"
       />
 
       <GalleryGrid images={previewImages} />

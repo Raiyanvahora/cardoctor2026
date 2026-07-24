@@ -2,9 +2,11 @@ import { MessageCircle } from "lucide-react";
 import { enquiryHref } from "@/lib/whatsapp";
 
 /**
- * Floating WhatsApp button.
+ * Floating WhatsApp button — desktop only.
  *
- * On phones it sits above the fixed bottom action bar so the two never overlap.
+ * Hidden below `lg`, where the fixed bottom action bar already carries a
+ * WhatsApp button. Showing both put a floating bubble on top of body copy and
+ * gave the same action two permanent slots on a small screen.
  */
 export function WhatsAppFloat() {
   return (
@@ -12,7 +14,7 @@ export function WhatsAppFloat() {
       href={enquiryHref()}
       target="_blank"
       rel="noopener noreferrer"
-      className="group fixed right-4 bottom-24 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_12px_32px_-8px_rgba(37,211,102,0.6)] transition-transform duration-300 hover:scale-105 sm:right-6 lg:bottom-6"
+      className="group fixed right-6 bottom-6 z-40 hidden h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_12px_32px_-8px_rgba(37,211,102,0.6)] transition-transform duration-300 hover:scale-105 lg:flex"
     >
       {/* Slow pulse to draw the eye without being noisy. */}
       <span

@@ -49,7 +49,7 @@ export function Reviews() {
             : undefined
         }
         align="center"
-        className="mb-12 lg:mb-16"
+        className="mb-9 lg:mb-12"
       />
 
       {hasReviews ? (

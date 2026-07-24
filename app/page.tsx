@@ -9,7 +9,7 @@ import { Hero } from "@/components/home/Hero";
 import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { RentalsTeaser } from "@/components/home/RentalsTeaser";
 import { Reviews } from "@/components/home/Reviews";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { ServicesSection } from "@/components/home/ServicesSection";
 import { TrustBar } from "@/components/home/TrustBar";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 
@@ -24,7 +24,7 @@ export default function HomePage() {
     <>
       <Hero />
       <TrustBar />
-      <ServicesGrid />
+      <ServicesSection />
       <AboutPreview />
       <WhyChooseUs />
       <ProcessSteps />

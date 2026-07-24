@@ -1,56 +1,90 @@
 import Image from "next/image";
-import { ArrowRight, Clock, MapPin, Star } from "lucide-react";
+import { ArrowRight, Clock, Star } from "lucide-react";
 import { business } from "@/lib/business";
 import { Button } from "@/components/ui/Button";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/ui/Reveal";
 
+const HERO_IMAGE = {
+  src: "/images/workshop-exterior-night.jpg",
+  alt: "The Car Doctor India workshop on Service Road NH8 in Anand, lit up at night with its illuminated sign above the service bays",
+  width: 1200,
+  height: 1600,
+};
+
 /**
- * Homepage hero.
+ * Homepage hero — two genuinely different layouts.
  *
- * Split layout: copy on the left, a full-height portrait photograph on the
- * right. All of the workshop photography is portrait, so this keeps the real
- * images at their true aspect ratio instead of cropping them to a wide strip.
+ * Mobile: the photograph goes full-bleed behind the copy. Every source image
+ * is portrait and a phone screen is portrait, so it fills the frame with no
+ * cropping at all. Previously the image sat below the copy, which meant the
+ * first screen of a luxury car website had no car on it.
+ *
+ * Desktop (lg+): copy left, the same portrait photograph framed on the right,
+ * where a full-bleed portrait crop would not work.
  */
 export function Hero() {
   return (
-    <section className="relative isolate overflow-hidden pt-28 pb-16 sm:pt-36 sm:pb-20 lg:pt-44 lg:pb-28">
-      <div aria-hidden className="glow-brand absolute -top-40 -left-40 -z-10 h-[36rem] w-[36rem]" />
-      <div aria-hidden className="texture-lines absolute inset-0 -z-10 opacity-50" />
+    <section className="relative isolate overflow-hidden">
+      {/* Mobile / tablet: full-bleed backdrop */}
+      <div aria-hidden className="absolute inset-0 -z-10 lg:hidden">
+        <Image
+          src={HERO_IMAGE.src}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        {/*
+          Tuned so the workshop actually reads through the copy: heaviest at the
+          top behind the headline, clearing through the middle where the lit
+          signage is worth seeing, solid again at the bottom so the trust strip
+          below meets it on a clean edge. The source is a night photograph, so
+          the cleared band is still dark enough to carry white text.
+        */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/92 via-ink/45 to-ink" />
+      </div>
 
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 sm:px-6 lg:grid-cols-12 lg:gap-16 lg:px-8">
+      {/* Desktop ambience */}
+      <div
+        aria-hidden
+        className="glow-brand absolute -top-40 -left-40 -z-10 hidden h-[36rem] w-[36rem] lg:block"
+      />
+      <div
+        aria-hidden
+        className="texture-lines absolute inset-0 -z-10 hidden opacity-50 lg:block"
+      />
+
+      {/* Tall enough on phones that the photograph has room to be seen. */}
+      <div className="mx-auto grid min-h-[88svh] max-w-7xl items-center gap-10 px-5 pt-28 pb-16 sm:px-6 sm:pt-32 lg:min-h-0 lg:grid-cols-12 lg:gap-14 lg:px-8 lg:pt-40 lg:pb-24">
         {/* Copy */}
-        <div className="lg:col-span-6 xl:col-span-6">
+        <div className="lg:col-span-6">
           <Reveal>
-            <Eyebrow>{business.positioning}</Eyebrow>
+            <span className="flex items-center gap-3">
+              <span aria-hidden className="h-px w-8 bg-brand" />
+              <span className="text-[11px] font-semibold tracking-[0.2em] text-brand uppercase">
+                {business.positioning}
+              </span>
+            </span>
           </Reveal>
 
-          <Reveal delay={0.08}>
-            <h1 className="mt-6 text-[2.6rem] leading-[1.03] font-extrabold text-fg sm:text-6xl lg:text-[4.2rem]">
+          <Reveal delay={0.06}>
+            <h1 className="mt-5 text-[2.5rem] leading-[1.02] font-extrabold text-fg sm:text-6xl lg:text-[4rem]">
               Advanced Care for{" "}
-              <span className="relative inline-block">
-                <span className="relative z-10 text-brand">Exceptional</span>
-                <span
-                  aria-hidden
-                  className="absolute inset-x-0 bottom-1 z-0 h-3 bg-brand/15"
-                />
-              </span>{" "}
-              Cars
+              <span className="text-brand">Exceptional</span> Cars
             </h1>
           </Reveal>
 
-          <Reveal delay={0.16}>
-            <p className="mt-6 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-              {business.tagline}. Since {business.established}, Car Doctor India
-              has looked after luxury and performance vehicles from its workshop
-              in {business.address.city}, {business.address.state} — from
-              scheduled servicing and advanced diagnostics to bodywork,
-              modifications and rentals.
+          <Reveal delay={0.12}>
+            <p className="mt-5 max-w-xl text-[0.95rem] leading-relaxed text-muted sm:text-lg">
+              {business.tagline}. Since {business.established}, a workshop in{" "}
+              {business.address.city} built around luxury and performance
+              vehicles — servicing, diagnostics, bodywork, upgrades and rentals.
             </p>
           </Reveal>
 
-          <Reveal delay={0.24}>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <Reveal delay={0.18}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <Button href="/book-appointment" size="lg">
                 Book Appointment
                 <ArrowRight aria-hidden className="h-4 w-4" />
@@ -61,71 +95,67 @@ export function Hero() {
             </div>
           </Reveal>
 
-          {/* Facts only — supplied by the business, nothing inferred. */}
-          <Reveal delay={0.32}>
-            <dl className="mt-12 grid max-w-lg grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
-              <div className="bg-surface px-4 py-5">
-                <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
-                  <Star aria-hidden className="h-3.5 w-3.5 fill-brand text-brand" />
-                  Google
-                </dt>
-                <dd className="mt-2 font-display text-xl font-bold text-fg">
+          {/* Facts supplied by the business — nothing inferred. */}
+          <Reveal delay={0.24}>
+            <dl className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4 border-t border-line pt-6 text-sm">
+              <div className="flex items-center gap-2.5">
+                <Star aria-hidden className="h-4 w-4 fill-brand text-brand" />
+                <dt className="sr-only">Google rating</dt>
+                <dd className="font-display font-bold text-fg">
                   {business.googleRating}
-                  <span className="text-brand">★</span>
+                  <span className="ml-1.5 font-sans text-xs font-normal text-dim">
+                    Google
+                  </span>
                 </dd>
               </div>
-              <div className="bg-surface px-4 py-5">
-                <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
-                  <MapPin aria-hidden className="h-3.5 w-3.5 text-brand" />
-                  Since
-                </dt>
-                <dd className="mt-2 font-display text-xl font-bold text-fg">
+
+              <span aria-hidden className="h-4 w-px bg-line" />
+
+              <div className="flex items-center gap-2.5">
+                <dt className="text-xs text-dim">Since</dt>
+                <dd className="font-display font-bold text-fg">
                   {business.established}
                 </dd>
               </div>
-              <div className="bg-surface px-4 py-5">
-                <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
-                  <Clock aria-hidden className="h-3.5 w-3.5 text-brand" />
-                  Hours
-                </dt>
-                <dd className="mt-2 font-display text-xl font-bold text-fg">
-                  24<span className="text-brand">/</span>7
+
+              <span aria-hidden className="h-4 w-px bg-line" />
+
+              <div className="flex items-center gap-2.5">
+                <Clock aria-hidden className="h-4 w-4 text-brand" />
+                <dt className="sr-only">Opening hours</dt>
+                <dd className="font-display font-bold text-fg">
+                  Open 24 Hours
                 </dd>
               </div>
             </dl>
           </Reveal>
         </div>
 
-        {/* Photograph */}
-        <div className="lg:col-span-6 xl:col-span-6">
-          <Reveal from="right" delay={0.12}>
+        {/* Desktop photograph */}
+        <div className="hidden lg:col-span-6 lg:block">
+          <Reveal from="right" delay={0.1}>
             <div className="relative">
-              <div
-                aria-hidden
-                className="glow-brand absolute -inset-8 -z-10 blur-2xl"
-              />
+              <div aria-hidden className="glow-brand absolute -inset-8 -z-10 blur-2xl" />
               <div className="relative overflow-hidden rounded-3xl border border-line bg-surface">
                 <Image
-                  src="/images/workshop-exterior-night.jpg"
-                  alt="The Car Doctor India workshop on Service Road NH8 in Anand, lit up at night with its illuminated sign above the service bays"
-                  width={1200}
-                  height={1600}
+                  src={HERO_IMAGE.src}
+                  alt={HERO_IMAGE.alt}
+                  width={HERO_IMAGE.width}
+                  height={HERO_IMAGE.height}
                   priority
-                  sizes="(min-width: 1024px) 42vw, 92vw"
-                  className="h-[26rem] w-full object-cover object-center sm:h-[32rem] lg:h-[38rem]"
+                  sizes="42vw"
+                  className="h-[34rem] w-full object-cover object-center xl:h-[38rem]"
                 />
                 <div
                   aria-hidden
                   className="absolute inset-0 bg-gradient-to-t from-ink via-ink/10 to-transparent"
                 />
-
-                <div className="absolute inset-x-0 bottom-0 p-6 sm:p-7">
-                  <p className="font-display text-xs font-bold uppercase tracking-[0.16em] text-brand">
+                <div className="absolute inset-x-0 bottom-0 p-7">
+                  <p className="font-display text-xs font-bold tracking-[0.16em] text-brand uppercase">
                     The Workshop
                   </p>
-                  <p className="mt-2 text-sm leading-relaxed text-muted">
-                    Near Amber Hotel, Service Road NH8, {business.address.city}.
-                    Open 24 hours.
+                  <p className="mt-2 text-sm text-muted">
+                    Near Amber Hotel, Service Road NH8, {business.address.city}
                   </p>
                 </div>
               </div>

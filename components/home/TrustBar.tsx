@@ -1,63 +1,47 @@
-import { CalendarDays, Clock, MapPin, Star, Truck } from "lucide-react";
-import type { LucideIcon } from "lucide-react";
 import { business } from "@/lib/business";
-import { Reveal } from "@/components/ui/Reveal";
-
-interface TrustItem {
-  icon: LucideIcon;
-  label: string;
-  value: string;
-}
 
 /**
- * Every item below is a fact supplied by the business. No statistics, job
- * counts or certifications are claimed, because none were provided.
+ * Facts supplied by the business, as a single compact strip.
+ *
+ * No statistics, job counts or certifications are claimed, because none were
+ * provided. On phones it scrolls horizontally rather than stacking into five
+ * rows of near-empty boxes.
  */
-const items: TrustItem[] = [
+const items: Array<{ label: string; value: string }> = [
+  { label: "Established", value: String(business.established) },
+  { label: "Google rating", value: `${business.googleRating}★` },
+  { label: "Availability", value: business.hours },
   {
-    icon: CalendarDays,
-    label: "Established",
-    value: String(business.established),
-  },
-  { icon: Star, label: "Google Rating", value: `${business.googleRating}★` },
-  { icon: Clock, label: "Availability", value: business.hours },
-  {
-    icon: MapPin,
     label: "Workshop",
     value: `${business.address.city}, ${business.address.state}`,
   },
-  { icon: Truck, label: "Pickup & Drop", value: "Location dependent" },
+  { label: "Pickup & drop", value: "Location dependent" },
 ];
 
 export function TrustBar() {
   return (
     <section
       aria-label="Business at a glance"
-      className="relative border-y border-line bg-ink-soft"
+      className="border-y border-line bg-ink-soft"
     >
       <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-        <ul className="grid grid-cols-2 gap-px bg-line sm:grid-cols-3 lg:grid-cols-5">
-          {items.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <Reveal
-                as="li"
-                key={item.label}
-                delay={index * 0.05}
-                className="bg-ink-soft"
-              >
-                <div className="flex flex-col gap-2 px-4 py-7 sm:px-6">
-                  <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-dim">
-                    <Icon aria-hidden className="h-3.5 w-3.5 text-brand" />
-                    {item.label}
-                  </span>
-                  <span className="font-display text-base font-bold uppercase tracking-tight text-fg sm:text-lg">
-                    {item.value}
-                  </span>
-                </div>
-              </Reveal>
-            );
-          })}
+        <ul
+          className="scrollbar-none -mx-5 flex snap-x snap-mandatory gap-8 overflow-x-auto px-5 py-5 sm:mx-0 sm:justify-between sm:gap-4 sm:overflow-visible sm:px-0"
+          role="list"
+        >
+          {items.map((item) => (
+            <li
+              key={item.label}
+              className="flex shrink-0 snap-start flex-col gap-1 sm:shrink"
+            >
+              <span className="text-[10px] font-semibold tracking-[0.16em] text-dim uppercase">
+                {item.label}
+              </span>
+              <span className="font-display text-sm font-bold whitespace-nowrap text-fg uppercase sm:text-base">
+                {item.value}
+              </span>
+            </li>
+          ))}
         </ul>
       </div>
     </section>

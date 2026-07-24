@@ -23,9 +23,9 @@ const widths = {
 };
 
 const spacings = {
-  tight: "py-12 sm:py-16",
-  default: "py-16 sm:py-20 lg:py-28",
-  loose: "py-20 sm:py-28 lg:py-36",
+  tight: "py-10 sm:py-12 lg:py-16",
+  default: "py-14 sm:py-16 lg:py-24",
+  loose: "py-16 sm:py-20 lg:py-28",
   flush: "",
 };
 

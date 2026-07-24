@@ -78,12 +78,27 @@ export function BookingForm() {
     setWhatsappUrl(url);
     setSubmitted(true);
 
-    // Opening in a new tab keeps the confirmation panel on screen. If the
-    // browser blocks the popup, navigate the current tab instead.
-    const opened = window.open(url, "_blank", "noopener,noreferrer");
-    if (!opened) {
-      window.location.href = url;
-    }
+    /*
+     * Open WhatsApp in a new tab via a synthetic anchor click.
+     *
+     * Deliberately NOT `window.open(url, "_blank", "noopener")`: that call
+     * returns null even when it succeeds, because `noopener` forbids handing
+     * back a window reference. Treating that null as "the popup was blocked"
+     * meant the fallback fired on every submission — WhatsApp opened in a new
+     * tab *and* this page navigated away to WhatsApp, losing the site and the
+     * confirmation panel below.
+     *
+     * An anchor click carries the user gesture, keeps this page intact, and
+     * needs no return value. If a browser does block it, the confirmation
+     * panel that just rendered carries a plain link the reader can tap.
+     */
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
   function resetForm() {

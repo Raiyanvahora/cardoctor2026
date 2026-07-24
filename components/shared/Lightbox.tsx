@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import type { GalleryImage } from "@/lib/gallery";
 
@@ -23,6 +24,7 @@ interface LightboxProps {
 export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
   const previouslyFocused = useRef<HTMLElement | null>(null);
+  const reduceMotion = useReducedMotion();
   const isOpen = index !== null;
 
   const goToPrevious = useCallback(() => {
@@ -84,19 +86,22 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
     };
   }, [isOpen, onClose, goToPrevious, goToNext]);
 
-  if (index === null) return null;
-
-  const image = images[index];
-  if (!image) return null;
+  const image = index === null ? null : images[index];
 
   return (
-    <div
-      ref={dialogRef}
-      role="dialog"
-      aria-modal="true"
-      aria-label={`Image ${index + 1} of ${images.length}: ${image.caption}`}
-      className="fixed inset-0 z-50 flex flex-col bg-ink/96 backdrop-blur-md"
-    >
+    <AnimatePresence>
+      {image && index !== null ? (
+        <motion.div
+          ref={dialogRef}
+          role="dialog"
+          aria-modal="true"
+          aria-label={`Image ${index + 1} of ${images.length}: ${image.caption}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: reduceMotion ? 0 : 0.2 }}
+          className="fixed inset-0 z-50 flex flex-col bg-ink/96 backdrop-blur-md"
+        >
       {/* Header */}
       <div className="flex items-center justify-between gap-4 border-b border-line px-4 py-3 sm:px-6">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-dim">
@@ -150,6 +155,8 @@ export function Lightbox({ images, index, onClose, onNavigate }: LightboxProps) 
           <span className="sr-only">Next image</span>
         </button>
       </div>
-    </div>
+        </motion.div>
+      ) : null}
+    </AnimatePresence>
   );
 }
