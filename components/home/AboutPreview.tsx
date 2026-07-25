@@ -28,7 +28,7 @@ export function AboutPreview() {
                   width={1200}
                   height={1600}
                   sizes="(min-width: 1024px) 36vw, 92vw"
-                  className="h-[24rem] w-full object-cover object-center sm:h-[30rem]"
+                  className="photo-lift h-[24rem] w-full object-cover object-center sm:h-[30rem]"
                 />
               </div>
 
@@ -40,7 +40,7 @@ export function AboutPreview() {
                   width={1200}
                   height={1600}
                   sizes="12rem"
-                  className="h-52 w-full object-cover object-center lg:h-60"
+                  className="photo-lift h-52 w-full object-cover object-center lg:h-60"
                 />
               </div>
             </div>

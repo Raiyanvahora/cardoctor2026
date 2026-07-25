@@ -72,7 +72,7 @@ export function RentalsTeaser() {
               width={765}
               height={1020}
               sizes="(min-width: 1024px) 38vw, 100vw"
-              className="h-64 w-full object-cover object-center sm:h-80 lg:h-full lg:min-h-[30rem]"
+              className="photo-lift h-64 w-full object-cover object-center sm:h-80 lg:h-full lg:min-h-[30rem]"
             />
             <div
               aria-hidden

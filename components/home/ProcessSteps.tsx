@@ -45,7 +45,7 @@ export function ProcessSteps() {
                 width={1200}
                 height={1600}
                 sizes="(min-width: 1024px) 34vw, 92vw"
-                className="h-56 w-full object-cover object-center sm:h-72 lg:h-[30rem]"
+                className="photo-lift h-56 w-full object-cover object-center sm:h-72 lg:h-[30rem]"
               />
               <div
                 aria-hidden

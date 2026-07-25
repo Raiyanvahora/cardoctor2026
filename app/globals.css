@@ -58,8 +58,12 @@
   h4 {
     font-family: var(--font-display);
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 1.05;
+    letter-spacing: -0.015em;
+    /* The tight letter-spacing pulls whole words together in big uppercase
+       headings ("LUXURYCARS"); a little word-spacing restores the gaps
+       without loosening the letters. */
+    word-spacing: 0.08em;
+    line-height: 1.06;
     text-wrap: balance;
   }
 
@@ -310,6 +314,13 @@
       transparent 1px,
       transparent 7px
     );
+  }
+
+  /* A gentle lift for the workshop's night photography — most of it is
+     under-exposed, and a touch of brightness, contrast and saturation makes it
+     read clearly without losing the dark, cinematic mood. */
+  .photo-lift {
+    filter: brightness(1.07) contrast(1.05) saturate(1.06);
   }
 
   /* Fades the bottom of an image into the page background. */

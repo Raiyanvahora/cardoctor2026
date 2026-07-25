@@ -69,7 +69,7 @@ export function GalleryGrid({
                     : "(min-width: 1024px) 30vw, 46vw"
                 }
                 className={cn(
-                  "w-full object-cover object-center transition-transform duration-500 group-hover:scale-105",
+                  "photo-lift w-full object-cover object-center transition-transform duration-500 group-hover:scale-105",
                   isTile ? "aspect-square" : "aspect-[3/4]",
                 )}
               />

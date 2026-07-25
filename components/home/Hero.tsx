@@ -33,7 +33,7 @@ export function Hero() {
           fill
           priority
           sizes="100vw"
-          className="animate-kenburns object-cover object-center"
+          className="animate-kenburns photo-lift object-cover object-center"
         />
         {/*
           Tuned so the workshop actually reads through the copy: heaviest at the
@@ -42,7 +42,10 @@ export function Hero() {
           below meets it on a clean edge. The source is a night photograph, so
           the cleared band is still dark enough to carry white text.
         */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/92 via-ink/45 to-ink" />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/92 via-ink/60 to-ink" />
+        {/* A soft extra veil over the copy band keeps the muted body text
+            legible where the lit signage brightens the middle of the frame. */}
+        <div className="absolute inset-x-0 top-[18%] h-64 bg-ink/35 blur-2xl" />
       </div>
 
       {/* Desktop ambience */}
@@ -144,7 +147,7 @@ export function Hero() {
                   height={HERO_IMAGE.height}
                   priority
                   sizes="42vw"
-                  className="animate-kenburns h-[34rem] w-full object-cover object-center xl:h-[38rem]"
+                  className="animate-kenburns photo-lift h-[34rem] w-full object-cover object-center xl:h-[38rem]"
                 />
                 <div
                   aria-hidden

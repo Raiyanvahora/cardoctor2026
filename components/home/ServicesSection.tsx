@@ -70,7 +70,7 @@ export function ServicesSection({ variant = "home" }: ServicesSectionProps) {
                   width={1288}
                   height={1599}
                   sizes="34vw"
-                  className="h-64 w-full object-cover object-center xl:h-80"
+                  className="photo-lift h-64 w-full object-cover object-center xl:h-80"
                 />
               </div>
 
