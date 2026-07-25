@@ -248,3 +248,24 @@ export const galleryImages: GalleryImage[] = [...featureImages, ...tileImages];
 
 /** The six feature photographs used in the homepage gallery preview. */
 export const previewImages = featureImages.slice(0, 6);
+
+const bySrc = (src: string): GalleryImage => {
+  const image = featureImages.find((entry) => entry.src === src);
+  if (!image) throw new Error(`Unknown gallery image: ${src}`);
+  return image;
+};
+
+/**
+ * Luxury cars photographed at the workshop, for the homepage showcase.
+ *
+ * These four full-resolution car photographs were previously not shown on the
+ * homepage at all — the sections leaned on a couple of workshop interiors that
+ * ended up repeating. Featuring the actual cars here adds the luxury imagery
+ * the page was missing and gives each workshop shot a single home.
+ */
+export const carShowcase: GalleryImage[] = [
+  bySrc("/images/mercedes-amg-night.jpg"),
+  bySrc("/images/bmw-m-daylight.jpg"),
+  bySrc("/images/bmw-1series-exterior.jpg"),
+  bySrc("/images/bmw-yellow-workshop.webp"),
+];

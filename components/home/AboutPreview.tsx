@@ -35,10 +35,10 @@ export function AboutPreview() {
               {/* Overlapping second frame, offset for depth. */}
               <div className="absolute -right-4 -bottom-10 hidden w-40 overflow-hidden rounded-2xl border border-line bg-surface shadow-2xl sm:block lg:-right-8 lg:w-48">
                 <Image
-                  src="/images/bay-red-ambient-night.jpg"
-                  alt="Cars inside the Car Doctor India service bay at night, lit by red ambient lighting"
-                  width={1288}
-                  height={1599}
+                  src="/images/bay-brand-wall-night.jpg"
+                  alt="The Car Doctor India service bay at night with cars parked inside and luxury marque badges on the wall"
+                  width={1200}
+                  height={1600}
                   sizes="12rem"
                   className="h-52 w-full object-cover object-center lg:h-60"
                 />

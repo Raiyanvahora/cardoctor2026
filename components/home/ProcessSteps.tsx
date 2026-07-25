@@ -40,8 +40,8 @@ export function ProcessSteps() {
           <Reveal from="left">
             <div className="relative overflow-hidden rounded-2xl border border-line bg-surface">
               <Image
-                src="/images/reception-interior.jpg"
-                alt="The Car Doctor India reception, with a branded desk and alloy wheels, grilles and performance parts displayed on the wall behind"
+                src="/images/bmw-1series-exterior.jpg"
+                alt="A blue BMW 1 Series with black alloy wheels parked outside the Car Doctor India workshop"
                 width={1200}
                 height={1600}
                 sizes="(min-width: 1024px) 34vw, 92vw"
@@ -52,7 +52,7 @@ export function ProcessSteps() {
                 className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-transparent"
               />
               <p className="absolute inset-x-0 bottom-0 p-6 text-sm text-muted">
-                Reception, Service Road NH8
+                Every car treated as its own job
               </p>
             </div>
           </Reveal>

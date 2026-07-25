@@ -16,12 +16,15 @@ interface GalleryGridProps {
    *           images from the Google listing still look sharp.
    */
   layout?: "feature" | "tile";
+  /** Columns for the feature layout on large screens. */
+  featureCols?: 3 | 4;
   className?: string;
 }
 
 export function GalleryGrid({
   images,
   layout = "feature",
+  featureCols = 3,
   className,
 }: GalleryGridProps) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -37,7 +40,9 @@ export function GalleryGrid({
             ? "grid-cols-3 sm:grid-cols-4 lg:grid-cols-6"
             : // Two-up on phones as well: a single column of portrait frames
               // ran to roughly 2,800px for six photographs.
-              "grid-cols-2 lg:grid-cols-3",
+              featureCols === 4
+              ? "grid-cols-2 lg:grid-cols-4"
+              : "grid-cols-2 lg:grid-cols-3",
           className,
         )}
       >

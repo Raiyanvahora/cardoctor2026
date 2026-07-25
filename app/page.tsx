@@ -3,6 +3,7 @@ import { business } from "@/lib/business";
 import { pageMetadata } from "@/lib/seo";
 
 import { AboutPreview } from "@/components/home/AboutPreview";
+import { CarsShowcase } from "@/components/home/CarsShowcase";
 import { ContactMap } from "@/components/home/ContactMap";
 import { GalleryPreview } from "@/components/home/GalleryPreview";
 import { Hero } from "@/components/home/Hero";
@@ -26,6 +27,7 @@ export default function HomePage() {
       <TrustBar />
       <ServicesSection />
       <AboutPreview />
+      <CarsShowcase />
       <WhyChooseUs />
       <ProcessSteps />
       <RentalsTeaser />
