@@ -58,7 +58,10 @@ export function SectionHeading({
         <span className="text-[11px] font-semibold tracking-[0.18em] text-brand uppercase">
           {eyebrow}
         </span>
-        <span aria-hidden className="h-px flex-1 bg-line" />
+        <span
+          aria-hidden
+          className="rule-line h-px flex-1 origin-left bg-gradient-to-r from-brand/60 to-line"
+        />
       </span>
     ) : (
       <span className={cn("mb-5 block", centered && "text-center")}>
@@ -67,7 +70,7 @@ export function SectionHeading({
         </span>
         <span
           aria-hidden
-          className={cn("mt-2.5 block h-0.5 w-9 bg-brand", centered && "mx-auto")}
+          className={cn("rule-line mt-2.5 block h-0.5 w-9 bg-brand", centered && "mx-auto")}
         />
       </span>
     );

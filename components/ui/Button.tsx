@@ -6,23 +6,24 @@ type Variant = "primary" | "secondary" | "ghost" | "whatsapp";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "inline-flex items-center justify-center gap-2 rounded-full font-semibold uppercase tracking-[0.08em] " +
+  "relative inline-flex items-center justify-center gap-2 rounded-full font-semibold uppercase tracking-[0.08em] " +
   "transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out " +
-  "active:translate-y-px disabled:pointer-events-none disabled:opacity-60";
+  "active:translate-y-px active:scale-[0.98] disabled:pointer-events-none disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-brand text-white shadow-[0_10px_30px_-12px_rgba(225,29,46,0.9)] hover:bg-brand-dim",
+    "btn-gloss bg-brand text-white shadow-[0_10px_30px_-12px_rgba(225,29,46,0.9)] hover:bg-brand-dim hover:shadow-[0_14px_40px_-12px_rgba(225,29,46,1)]",
   secondary:
     "border border-line-strong bg-surface/70 text-fg backdrop-blur hover:border-brand hover:bg-surface-2",
   ghost: "text-muted hover:text-fg",
   whatsapp: "bg-[#25D366] text-[#062e12] hover:bg-[#1eb855]",
 };
 
+// Minimum heights keep every button a comfortable touch target on phones.
 const sizes: Record<Size, string> = {
-  sm: "px-4 py-2 text-[11px]",
-  md: "px-6 py-3 text-xs",
-  lg: "px-7 py-3.5 text-sm",
+  sm: "min-h-11 px-5 py-2.5 text-[11px]",
+  md: "min-h-11 px-6 py-3 text-xs",
+  lg: "min-h-[3.25rem] px-7 py-3.5 text-sm",
 };
 
 interface StyleProps {

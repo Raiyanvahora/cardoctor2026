@@ -13,19 +13,22 @@ export function Breadcrumb({ crumbs }: BreadcrumbProps) {
 
   return (
     <nav aria-label="Breadcrumb">
-      <ol className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs font-medium text-dim">
+      <ol className="flex flex-wrap items-center justify-center gap-x-1 gap-y-1 text-xs font-medium text-dim">
         {trail.map((crumb, index) => {
           const isLast = index === trail.length - 1;
           return (
-            <li key={crumb.path} className="flex items-center gap-2">
+            <li key={crumb.path} className="flex items-center gap-1">
               {isLast ? (
-                <span aria-current="page" className="text-muted">
+                <span
+                  aria-current="page"
+                  className="inline-flex min-h-10 items-center px-1.5 text-muted"
+                >
                   {crumb.name}
                 </span>
               ) : (
                 <Link
                   href={crumb.path}
-                  className="transition-colors hover:text-fg"
+                  className="inline-flex min-h-10 items-center px-1.5 transition-colors hover:text-fg"
                 >
                   {crumb.name}
                 </Link>

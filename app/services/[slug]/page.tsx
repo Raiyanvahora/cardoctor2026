@@ -291,7 +291,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                       className="h-5 w-5 shrink-0 text-dim transition-colors group-hover:text-brand"
                     />
                     <span className="min-w-0">
-                      <span className="block text-[10px] font-semibold tracking-[0.16em] text-dim uppercase">
+                      <span className="block text-[11px] font-semibold tracking-[0.16em] text-dim uppercase">
                         Previous
                       </span>
                       <span className="mt-0.5 block truncate text-sm font-semibold text-fg">
@@ -305,7 +305,7 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                     className="group flex items-center justify-end gap-4 rounded-xl border border-line bg-surface p-4 text-right transition-colors hover:border-brand/50 hover:bg-surface-2"
                   >
                     <span className="min-w-0">
-                      <span className="block text-[10px] font-semibold tracking-[0.16em] text-dim uppercase">
+                      <span className="block text-[11px] font-semibold tracking-[0.16em] text-dim uppercase">
                         Next
                       </span>
                       <span className="mt-0.5 block truncate text-sm font-semibold text-fg">

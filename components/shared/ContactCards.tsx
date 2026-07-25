@@ -110,7 +110,7 @@ export function ContactCards({ className, limit, compact = false }: ContactCards
               <Icon aria-hidden className="h-4.5 w-4.5 text-brand" />
             </span>
             <span className="min-w-0">
-              <span className="block text-[10px] font-semibold tracking-[0.16em] text-dim uppercase">
+              <span className="block text-[11px] font-semibold tracking-[0.16em] text-dim uppercase">
                 {entry.label}
               </span>
               <span className="mt-1 block text-sm font-medium break-words text-fg">

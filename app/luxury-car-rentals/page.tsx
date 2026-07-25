@@ -187,7 +187,7 @@ export default function RentalsPage() {
                     sizes="(min-width: 1024px) 22vw, (min-width: 640px) 45vw, 92vw"
                     className="aspect-[4/3] w-full object-cover object-center"
                   />
-                  <span className="absolute top-3 left-3 rounded-full border border-line-strong bg-ink/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.12em] text-muted backdrop-blur">
+                  <span className="absolute top-3 left-3 rounded-full border border-line-strong bg-ink/80 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-muted backdrop-blur">
                     Indicative
                   </span>
                 </div>

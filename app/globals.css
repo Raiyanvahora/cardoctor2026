@@ -116,13 +116,20 @@
   }
 
   .js [data-reveal="bottom"] {
-    transform: translateY(20px);
+    transform: translateY(22px);
   }
+  /* Horizontal offsets stay within the page gutter (min 20px), so a
+     not-yet-revealed full-width element never pokes past the viewport edge
+     and triggers a horizontal scrollbar. */
   .js [data-reveal="left"] {
-    transform: translateX(-20px);
+    transform: translateX(-16px);
   }
   .js [data-reveal="right"] {
-    transform: translateX(20px);
+    transform: translateX(16px);
+  }
+  /* A gentle rise-and-settle used for hero-level elements. */
+  .js [data-reveal="zoom"] {
+    transform: translateY(14px) scale(0.985);
   }
 
   .js [data-reveal][data-shown] {
@@ -131,12 +138,144 @@
     will-change: auto;
   }
 
+  /* A red hairline that draws itself in when its heading is revealed. */
+  .js [data-reveal] .rule-line {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-out-soft) 0.15s;
+  }
+  .js [data-reveal][data-shown] .rule-line {
+    transform: scaleX(1);
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .js [data-reveal],
-    .js [data-reveal][data-shown] {
+    .js [data-reveal][data-shown],
+    .js [data-reveal] .rule-line,
+    .js [data-reveal][data-shown] .rule-line {
       opacity: 1;
       transform: none;
       transition: none;
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Premium motion
+
+   Continuous, ambient animation — a slow image drift, a marque marquee, a
+   sheen across the accent word. All are decorative: the global reduced-motion
+   rule below freezes every one of them, and each frozen state is a perfectly
+   good static design.
+--------------------------------------------------------------------------- */
+@layer utilities {
+  /* Slow cinematic zoom for hero photography. */
+  @keyframes kenburns {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(1.09);
+    }
+  }
+  .animate-kenburns {
+    animation: kenburns 18s ease-in-out infinite alternate;
+    transform-origin: 55% 45%;
+  }
+
+  /* Seamless marquee: the track holds two copies, so -50% loops perfectly. */
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee var(--marquee-duration, 32s) linear infinite;
+  }
+  .marquee-mask {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 12%,
+      #000 88%,
+      transparent
+    );
+  }
+
+  /* A highlight that travels across the accent word. */
+  @keyframes sheen {
+    0% {
+      background-position: 180% 0;
+    }
+    60%,
+    100% {
+      background-position: -60% 0;
+    }
+  }
+  .text-sheen {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-brand) 42%,
+      #ff7a86 50%,
+      var(--color-brand) 58%
+    );
+    background-size: 220% 100%;
+    background-position: 180% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: sheen 7s ease-in-out 1.2s infinite;
+  }
+
+  /* A soft light sweep across a filled button on hover. */
+  .btn-gloss {
+    overflow: hidden;
+  }
+  .btn-gloss::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      100deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.28) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.6s var(--ease-out-soft);
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .btn-gloss:hover::after {
+      transform: translateX(120%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-kenburns,
+    .animate-marquee,
+    .text-sheen {
+      animation: none !important;
+    }
+    .btn-gloss::after {
+      display: none;
+    }
+    /* Frozen sheen would show a stray highlight — pin it to solid brand. */
+    .text-sheen {
+      background: none;
+      color: var(--color-brand);
+      -webkit-text-fill-color: var(--color-brand);
     }
   }
 }

@@ -7,7 +7,7 @@ interface RevealProps {
   children: React.ReactNode;
   /** Stagger helper — seconds to wait before this element animates. */
   delay?: number;
-  from?: "bottom" | "left" | "right";
+  from?: "bottom" | "left" | "right" | "zoom";
   className?: string;
   as?: "div" | "li" | "article" | "section";
 }

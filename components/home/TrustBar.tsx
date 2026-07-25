@@ -34,7 +34,7 @@ export function TrustBar() {
               key={item.label}
               className="flex shrink-0 snap-start flex-col gap-1 sm:shrink"
             >
-              <span className="text-[10px] font-semibold tracking-[0.16em] text-dim uppercase">
+              <span className="text-[11px] font-semibold tracking-[0.16em] text-dim uppercase">
                 {item.label}
               </span>
               <span className="font-display text-sm font-bold whitespace-nowrap text-fg uppercase sm:text-base">

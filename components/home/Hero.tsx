@@ -26,14 +26,14 @@ export function Hero() {
   return (
     <section className="relative isolate overflow-hidden">
       {/* Mobile / tablet: full-bleed backdrop */}
-      <div aria-hidden className="absolute inset-0 -z-10 lg:hidden">
+      <div aria-hidden className="absolute inset-0 -z-10 overflow-hidden lg:hidden">
         <Image
           src={HERO_IMAGE.src}
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-center"
+          className="animate-kenburns object-cover object-center"
         />
         {/*
           Tuned so the workshop actually reads through the copy: heaviest at the
@@ -68,10 +68,10 @@ export function Hero() {
             </span>
           </Reveal>
 
-          <Reveal delay={0.06}>
+          <Reveal delay={0.06} from="zoom">
             <h1 className="mt-5 text-[2.5rem] leading-[1.02] font-extrabold text-fg sm:text-6xl lg:text-[4rem]">
               Advanced Care for{" "}
-              <span className="text-brand">Exceptional</span> Cars
+              <span className="text-sheen text-brand">Exceptional</span> Cars
             </h1>
           </Reveal>
 
@@ -144,7 +144,7 @@ export function Hero() {
                   height={HERO_IMAGE.height}
                   priority
                   sizes="42vw"
-                  className="h-[34rem] w-full object-cover object-center xl:h-[38rem]"
+                  className="animate-kenburns h-[34rem] w-full object-cover object-center xl:h-[38rem]"
                 />
                 <div
                   aria-hidden

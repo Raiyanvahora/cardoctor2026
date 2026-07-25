@@ -6,6 +6,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GalleryGrid } from "@/components/shared/GalleryGrid";
+import { Marquee } from "@/components/shared/Marquee";
 
 /**
  * A lineup of the luxury cars actually photographed at the workshop.
@@ -34,17 +35,14 @@ export function CarsShowcase() {
 
       <GalleryGrid images={carShowcase} featureCols={4} />
 
+      {/* The marques we specialise in, drifting past. */}
       <Reveal delay={0.1}>
-        <ul className="mt-8 flex flex-wrap justify-center gap-2">
-          {marques.map((marque) => (
-            <li
-              key={marque.name}
-              className="rounded-full border border-line bg-surface px-4 py-2 text-[11px] font-semibold tracking-[0.12em] text-muted uppercase"
-            >
-              {marque.name}
-            </li>
-          ))}
-        </ul>
+        <div className="mt-10 border-y border-line py-5">
+          <Marquee
+            items={marques.map((marque) => marque.name)}
+            durationSeconds={28}
+          />
+        </div>
       </Reveal>
     </Section>
   );

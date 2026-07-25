@@ -97,7 +97,7 @@ export default function BookAppointmentPage() {
                     <li className="flex items-start gap-3">
                       <Clock aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                       <span>
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                           Hours
                         </span>
                         <span className="mt-1 block text-muted">
@@ -108,7 +108,7 @@ export default function BookAppointmentPage() {
                     <li className="flex items-start gap-3">
                       <MapPin aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                       <span>
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                           Workshop
                         </span>
                         <address className="mt-1 block not-italic text-muted">
@@ -119,7 +119,7 @@ export default function BookAppointmentPage() {
                     <li className="flex items-start gap-3">
                       <Truck aria-hidden className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
                       <span>
-                        <span className="block text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                        <span className="block text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                           Pickup & Drop
                         </span>
                         <span className="mt-1 block text-muted">

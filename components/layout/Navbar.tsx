@@ -87,19 +87,24 @@ export function Navbar() {
                       href={link.href}
                       aria-current={isActive ? "page" : undefined}
                       className={cn(
-                        "relative rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
+                        "group/link relative rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] transition-colors",
                         isActive
                           ? "text-fg"
                           : "text-muted hover:text-fg",
                       )}
                     >
                       {link.label}
-                      {isActive ? (
-                        <span
-                          aria-hidden
-                          className="absolute inset-x-4 -bottom-0.5 h-px bg-brand"
-                        />
-                      ) : null}
+                      {/* Underline: full width when active, growing from the
+                          centre on hover for the rest. */}
+                      <span
+                        aria-hidden
+                        className={cn(
+                          "absolute inset-x-4 -bottom-0.5 h-px origin-center bg-brand transition-transform duration-300 ease-out",
+                          isActive
+                            ? "scale-x-100"
+                            : "scale-x-0 group-hover/link:scale-x-100",
+                        )}
+                      />
                     </Link>
                   </li>
                 );

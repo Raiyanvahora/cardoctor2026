@@ -104,7 +104,7 @@ export default function AboutPage() {
             <Reveal delay={0.18}>
               <dl className="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line bg-line">
                 <div className="bg-surface px-4 py-5">
-                  <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                  <dt className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                     <MapPin aria-hidden className="h-3.5 w-3.5 text-brand" />
                     Since
                   </dt>
@@ -113,7 +113,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div className="bg-surface px-4 py-5">
-                  <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                  <dt className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                     <Star aria-hidden className="h-3.5 w-3.5 fill-brand text-brand" />
                     Google
                   </dt>
@@ -123,7 +123,7 @@ export default function AboutPage() {
                   </dd>
                 </div>
                 <div className="bg-surface px-4 py-5">
-                  <dt className="flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-dim">
+                  <dt className="flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-dim">
                     <Clock aria-hidden className="h-3.5 w-3.5 text-brand" />
                     Open
                   </dt>
