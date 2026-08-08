@@ -11,6 +11,7 @@ import { ProcessSteps } from "@/components/home/ProcessSteps";
 import { RentalsTeaser } from "@/components/home/RentalsTeaser";
 import { Reviews } from "@/components/home/Reviews";
 import { ServicesSection } from "@/components/home/ServicesSection";
+import { Transformations } from "@/components/home/Transformations";
 import { TrustBar } from "@/components/home/TrustBar";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 
@@ -28,6 +29,7 @@ export default function HomePage() {
       <ServicesSection />
       <AboutPreview />
       <CarsShowcase />
+      <Transformations />
       <WhyChooseUs />
       <ProcessSteps />
       <RentalsTeaser />

@@ -29,6 +29,7 @@ import { JsonLd } from "@/components/ui/JsonLd";
 import { PageHero } from "@/components/ui/PageHero";
 import { Reveal } from "@/components/ui/Reveal";
 import { Section } from "@/components/ui/Section";
+import { BeforeAfterBoards } from "@/components/shared/BeforeAfterBoards";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -228,6 +229,25 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
                 </ul>
               </div>
             </Reveal>
+
+            {service.showBeforeAfter ? (
+              <div className="mt-10">
+                <Reveal>
+                  <h2 className="text-xl font-bold text-fg sm:text-2xl">
+                    Before &amp; After
+                  </h2>
+                  <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">
+                    The same Porsche Cayenne, photographed from the same spot in
+                    our bay before and after the work. Tap either board to view
+                    it larger.
+                  </p>
+                </Reveal>
+                <BeforeAfterBoards
+                  className="mt-5"
+                  sizes="(min-width: 1024px) 31vw, 92vw"
+                />
+              </div>
+            ) : null}
 
             <Reveal delay={0.2}>
               <div className="mt-10">

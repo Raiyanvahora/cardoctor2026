@@ -41,6 +41,7 @@ yarn-error.log*
 /Cardoctor workshop/
 /Reference images/
 /Reference images /
+/New images/
 
 # typescript incremental build cache
 tsconfig.tsbuildinfo

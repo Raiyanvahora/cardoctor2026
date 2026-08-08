@@ -5,13 +5,16 @@
  * vehicle photographed there. Nothing here is stock or generated, and each alt
  * description states only what is actually visible in the frame.
  *
- * `tier` splits the two source qualities:
+ * `tier` splits the three source qualities:
  *   - "feature" — full-resolution photographs, used large.
  *   - "tile"    — 204px-wide photographs from the business's Google listing.
  *                 They are only ever rendered small, where that width holds up.
+ *   - "board"   — the workshop's own before/after comparison boards. These are
+ *                 composites rather than single frames, so they are shown
+ *                 uncropped (object-contain) and never mixed into the grids.
  */
 
-export type GalleryTier = "feature" | "tile";
+export type GalleryTier = "feature" | "tile" | "board";
 
 export interface GalleryImage {
   src: string;
@@ -94,6 +97,30 @@ export const featureImages: GalleryImage[] = [
     height: 1020,
     tier: "feature",
     caption: "BMW 3 Series in yellow",
+  },
+  {
+    src: "/images/bmw-m340i-carbon-front.jpg",
+    alt: "A red BMW M340i with an exposed carbon-fibre bonnet and front wings, a carbon front splitter and bronze alloy wheels, parked on paving beside flowering trees",
+    width: 855,
+    height: 1280,
+    tier: "feature",
+    caption: "BMW M340i in carbon and bronze",
+  },
+  {
+    src: "/images/bmw-3gt-signage-daylight.jpg",
+    alt: "A white BMW 3 Series GT parked in front of the Car Doctor India workshop in daylight, with the service signage overhead and a Porsche Cayenne inside the bay behind",
+    width: 1200,
+    height: 1600,
+    tier: "feature",
+    caption: "BMW 3 Series GT at the workshop",
+  },
+  {
+    src: "/images/bmw-3series-white-paving.jpg",
+    alt: "The side profile of a white BMW 3 Series GT parked under the Car Doctor India canopy, with covered cars waiting behind it",
+    width: 1600,
+    height: 1200,
+    tier: "feature",
+    caption: "BMW 3 Series GT under the canopy",
   },
 ];
 
@@ -264,8 +291,70 @@ const bySrc = (src: string): GalleryImage => {
  * the page was missing and gives each workshop shot a single home.
  */
 export const carShowcase: GalleryImage[] = [
+  bySrc("/images/bmw-m340i-carbon-front.jpg"),
   bySrc("/images/mercedes-amg-night.jpg"),
   bySrc("/images/bmw-m-daylight.jpg"),
   bySrc("/images/bmw-1series-exterior.jpg"),
-  bySrc("/images/bmw-yellow-workshop.webp"),
+];
+
+/**
+ * Before/after comparison boards produced by the workshop.
+ *
+ * Both frames of each board show the same car in the same spot, so they stand
+ * as the clearest evidence of what the upgrades and bodywork actually change.
+ * The boards carry their own labelling burned into the image, which a screen
+ * reader cannot read — hence the full `alt`, and the `before`/`after` lists
+ * that restate the same points as real text beside the picture.
+ */
+export interface Transformation extends GalleryImage {
+  /** Short label for the angle shown, e.g. "Front". */
+  view: string;
+  title: string;
+  before: string[];
+  after: string[];
+}
+
+export const transformations: Transformation[] = [
+  {
+    src: "/images/porsche-cayenne-front-before-after.jpg",
+    alt: "Before and after comparison of a Porsche Cayenne's front end, shot from the same spot inside the Car Doctor India bay — grey and standard above, red with a new bumper and blacked-out lights below",
+    width: 1118,
+    height: 1407,
+    tier: "board",
+    caption: "Porsche Cayenne — front, before and after",
+    view: "Front",
+    title: "Porsche Cayenne, Front End",
+    before: [
+      "Original grey paintwork",
+      "Stock front bumper",
+      "Chrome grille surrounds",
+      "Standard headlight housings",
+    ],
+    after: [
+      "Full colour change to red",
+      "Redesigned front bumper",
+      "Gloss black grilles and trim",
+      "Blacked-out headlight housings",
+    ],
+  },
+  {
+    src: "/images/porsche-cayenne-rear-before-after.jpg",
+    alt: "Before and after comparison of a Porsche Cayenne's rear end, shot from the same spot inside the Car Doctor India bay — grey with separate tail lamps above, red with a full-width LED light bar and quad exhausts below",
+    width: 1310,
+    height: 1201,
+    tier: "board",
+    caption: "Porsche Cayenne — rear, before and after",
+    view: "Rear",
+    title: "Porsche Cayenne, Rear End",
+    before: [
+      "Stock rear bumper",
+      "Earlier tail lamp design",
+      "Twin oval exhaust tips",
+    ],
+    after: [
+      "Full-width LED tail lamp and light bar",
+      "Sport rear bumper and diffuser",
+      "Quad exhaust tips",
+    ],
+  },
 ];

@@ -35,6 +35,11 @@ export interface Service {
   intro: string[];
   whatsIncluded: string[];
   goodToKnow: string[];
+  /**
+   * Show the workshop's before/after comparison boards on this service's page.
+   * Only the services the boards actually document should set this.
+   */
+  showBeforeAfter?: boolean;
   image: {
     src: string;
     alt: string;
@@ -228,6 +233,7 @@ export const services: Service[] = [
       "We will tell you honestly if a requested modification is not advisable for your particular car.",
       "Please make sure any modification you choose is compliant with regulations applicable to your vehicle.",
     ],
+    showBeforeAfter: true,
     image: RECEPTION,
   },
   {
