@@ -18,7 +18,7 @@ export function MobileBottomBar() {
   const onBookingPage = pathname === "/book-appointment";
 
   const itemClasses =
-    "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[10px] font-semibold uppercase tracking-[0.1em] transition-colors";
+    "flex flex-1 flex-col items-center justify-center gap-1 py-2.5 text-[11px] font-semibold uppercase tracking-[0.08em] transition-colors";
 
   return (
     <div

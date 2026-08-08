@@ -50,10 +50,17 @@ export function BeforeAfterBoards({
                   width={board.width}
                   height={board.height}
                   sizes={sizes}
-                  className="aspect-square w-full object-contain transition-transform duration-500 group-hover:scale-[1.02]"
+                  // Natural height on phones: squeezing a two-frame composite
+                  // into a square shrinks each half to about 170px, which makes
+                  // the labelling burned into the board unreadable. The square
+                  // frame only comes back at lg, where the boards sit two-up
+                  // and need to line up.
+                  className="w-full object-contain transition-transform duration-500 group-hover:scale-[1.02] lg:aspect-square"
                 />
 
-                <span className="absolute top-3.5 left-3.5 rounded-full border border-line-strong bg-ink/75 px-3 py-1 text-[10px] font-semibold tracking-[0.16em] text-fg uppercase backdrop-blur">
+                {/* Right-aligned: both boards carry a "BEFORE" label burned
+                    into their top-left corner. */}
+                <span className="absolute top-3.5 right-3.5 rounded-full border border-line-strong bg-ink/75 px-3 py-1 text-[11px] font-semibold tracking-[0.14em] text-fg uppercase backdrop-blur">
                   {board.view}
                 </span>
 
@@ -107,7 +114,7 @@ function Column({
     <div>
       <p
         className={cn(
-          "text-[10px] font-semibold tracking-[0.16em] uppercase",
+          "text-[11px] font-semibold tracking-[0.14em] uppercase",
           isBrand ? "text-brand" : "text-dim",
         )}
       >

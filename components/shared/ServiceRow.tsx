@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import type { Service } from "@/lib/services";
-import { cn } from "@/lib/cn";
 
 interface ServiceRowProps {
   service: Service;
@@ -28,7 +27,7 @@ export function ServiceRow({
     <li>
       <Link
         href={`/services/${service.slug}`}
-        className="group flex items-center gap-4 border-b border-line py-4 transition-colors duration-300 hover:border-brand/40 sm:gap-5 sm:py-5"
+        className="group flex items-center gap-3 border-b border-line py-4 transition-colors duration-300 hover:border-brand/40 sm:gap-5 sm:py-5"
       >
         <span className="font-display w-6 shrink-0 text-xs font-bold text-dim transition-colors duration-300 group-hover:text-brand">
           {String(index + 1).padStart(2, "0")}
@@ -43,12 +42,10 @@ export function ServiceRow({
             {service.shortTitle}
           </span>
           {showSummary ? (
-            <span
-              className={cn(
-                "mt-1.5 block text-sm leading-snug text-muted",
-                "line-clamp-2",
-              )}
-            >
+            // No `block` here: line-clamp needs display:-webkit-box, and cn()
+            // is a plain join, so a `block` alongside it silently won the
+            // cascade and the clamp did nothing — summaries ran to 4-5 lines.
+            <span className="mt-1.5 line-clamp-2 text-sm leading-snug text-muted">
               {service.summary}
             </span>
           ) : null}

@@ -99,10 +99,9 @@ export default function RootLayout({
 
         <Navbar />
 
-        {/* Bottom padding clears the fixed mobile action bar. */}
-        <main id="main" className="pb-20 lg:pb-0">
-          {children}
-        </main>
+        {/* Clearance for the fixed mobile action bar is on <body>, so that it
+            also covers the footer below. */}
+        <main id="main">{children}</main>
 
         <Footer />
         <WhatsAppFloat />

@@ -48,8 +48,20 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Clears the fixed mobile action bar so nothing is hidden behind it. */
-    padding-bottom: env(safe-area-inset-bottom);
+    /*
+       Clears the fixed mobile action bar plus the notch, so nothing is hidden
+       behind it. This lives on <body> rather than <main> because the footer
+       sits outside <main> — padding there left the last footer row (the
+       copyright and tagline) permanently under the bar.
+    */
+    padding-bottom: calc(env(safe-area-inset-bottom) + 3.75rem);
+  }
+
+  /* The action bar is lg:hidden, so the clearance goes with it. */
+  @media (min-width: 64rem) {
+    body {
+      padding-bottom: 0;
+    }
   }
 
   h1,

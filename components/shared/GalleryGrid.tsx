@@ -81,10 +81,12 @@ export function GalleryGrid({
 
               {!isTile ? (
                 <span className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-3.5 text-left sm:p-5">
-                  <span className="line-clamp-1 text-xs font-semibold text-fg sm:line-clamp-2 sm:text-sm">
+                  <span className="line-clamp-2 text-xs font-semibold text-fg sm:text-sm">
                     {image.caption}
                   </span>
-                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line-strong bg-ink/70 text-fg opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {/* Hover-only, so on a touch screen it never appears — it is
+                      dropped there rather than left reserving caption width. */}
+                  <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border border-line-strong bg-ink/70 text-fg opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:flex">
                     <Expand aria-hidden className="h-4 w-4" />
                   </span>
                 </span>

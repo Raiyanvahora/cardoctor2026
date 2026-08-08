@@ -21,14 +21,14 @@ export function Breadcrumb({ crumbs }: BreadcrumbProps) {
               {isLast ? (
                 <span
                   aria-current="page"
-                  className="inline-flex min-h-10 items-center px-1.5 text-muted"
+                  className="inline-flex min-h-11 items-center px-1.5 text-muted"
                 >
                   {crumb.name}
                 </span>
               ) : (
                 <Link
                   href={crumb.path}
-                  className="inline-flex min-h-10 items-center px-1.5 transition-colors hover:text-fg"
+                  className="inline-flex min-h-11 items-center px-1.5 transition-colors hover:text-fg"
                 >
                   {crumb.name}
                 </Link>
