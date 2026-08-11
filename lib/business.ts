@@ -36,9 +36,8 @@ export const business = {
   },
 
   phones: {
-    /** Primary line — also the WhatsApp number. */
+    /** The only published line — also the WhatsApp number. */
     primary: "+91 72288 60075",
-    secondary: "+91 87801 30441",
   },
 
   /** WhatsApp expects the number in international format with no symbols. */
@@ -77,7 +76,6 @@ export function telHref(phone: string): string {
 }
 
 export const primaryTelHref = telHref(business.phones.primary);
-export const secondaryTelHref = telHref(business.phones.secondary);
 export const mailHref = `mailto:${business.email}`;
 
 /** Embeddable map centred on the workshop. Keyless, so it needs no API setup. */

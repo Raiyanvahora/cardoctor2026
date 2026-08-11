@@ -13,7 +13,6 @@ import {
   business,
   mailHref,
   primaryTelHref,
-  secondaryTelHref,
 } from "@/lib/business";
 import { navLinks } from "@/lib/navigation";
 import { services } from "@/lib/services";
@@ -127,15 +126,6 @@ export function Footer() {
                 >
                   <Phone aria-hidden className="h-4 w-4 shrink-0 text-brand" />
                   {business.phones.primary}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={secondaryTelHref}
-                  className="flex min-h-11 items-center gap-3 text-sm text-muted transition-colors hover:text-fg"
-                >
-                  <Phone aria-hidden className="h-4 w-4 shrink-0 text-brand" />
-                  {business.phones.secondary}
                 </a>
               </li>
               <li>

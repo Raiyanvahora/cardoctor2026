@@ -12,7 +12,6 @@ import {
   business,
   mailHref,
   primaryTelHref,
-  secondaryTelHref,
 } from "@/lib/business";
 import { enquiryHref } from "@/lib/whatsapp";
 import { cn } from "@/lib/cn";
@@ -34,13 +33,7 @@ const entries: ContactEntry[] = [
     label: "Call us",
     value: business.phones.primary,
     href: primaryTelHref,
-    note: "Primary line — also WhatsApp",
-  },
-  {
-    icon: Phone,
-    label: "Alternate line",
-    value: business.phones.secondary,
-    href: secondaryTelHref,
+    note: "Also WhatsApp",
   },
   {
     icon: MessageCircle,

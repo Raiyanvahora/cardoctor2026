@@ -119,13 +119,6 @@ export function autoRepairSchema() {
         areaServed: business.address.countryCode,
         availableLanguage: ["en", "hi", "gu"],
       },
-      {
-        "@type": "ContactPoint",
-        telephone: business.phones.secondary,
-        contactType: "customer service",
-        areaServed: business.address.countryCode,
-        availableLanguage: ["en", "hi", "gu"],
-      },
     ],
     openingHoursSpecification: [
       {
