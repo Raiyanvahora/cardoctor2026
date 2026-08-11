@@ -63,6 +63,22 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large" },
   },
+  /*
+     Google Search Console ownership token. Renders as
+     <meta name="google-site-verification" content="…"> on every page.
+
+     Only the token goes here — Google issues it as
+     "google-site-verification=<token>" for the DNS TXT method, and
+     including that prefix in the content attribute fails verification.
+
+     This is a public token by design; it has to be readable in the page
+     source for Google to check it, and it grants no access on its own.
+     Leave it in place — Search Console re-checks periodically and removing
+     it later un-verifies the property.
+  */
+  verification: {
+    google: "7iOkah20GHO-U60198g9TKNCDVY3JaE-f4GWk7Zb2eE",
+  },
 };
 
 export const viewport: Viewport = {
