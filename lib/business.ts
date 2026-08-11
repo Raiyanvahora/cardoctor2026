@@ -58,8 +58,19 @@ export const business = {
   /** Pickup and drop is offered, but never promised unconditionally. */
   pickupNote: "Pickup and drop availability depends on your location.",
 
-  /** Production URL. Update after the first Netlify deploy if a custom domain is added. */
-  siteUrl: "https://cardoctorindia.netlify.app",
+  /**
+   * Production URL — the canonical origin for the whole site.
+   *
+   * Must be the domain the public actually reaches, because every canonical
+   * link, og:url, sitemap entry, robots Host and JSON-LD @id is derived from
+   * it. It stayed on the netlify.app subdomain after the custom domain went
+   * live, which told Google the canonical copy of every page lived on a
+   * different host than the one being served.
+   *
+   * www, not the apex: the apex 301-redirects to www, so www is the address
+   * that actually resolves to content.
+   */
+  siteUrl: "https://www.cardoctorindia.com",
 } as const;
 
 /** "Near Amber Hotel, Service Road NH8, Anand, Gujarat 388001" */
