@@ -69,10 +69,11 @@ export default function RentalsPage() {
                 Availability & Rates
               </h2>
               <p className="mt-3 text-sm leading-relaxed text-muted">
-                We do not publish a fixed fleet list or rate card, because
-                availability changes constantly. Message us on WhatsApp with your
-                dates and the occasion, and we will confirm exactly what is free
-                and what it costs. Nothing is held until it is confirmed with you.
+                We keep our fleet list and pricing off the page, since what is
+                on the road changes day to day. Send us a WhatsApp with the
+                dates you need and the occasion, and we will come back with
+                what is open and what it will cost. A car is only yours once we
+                confirm it with you.
               </p>
             </div>
           </div>
